@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-9.0.34/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-beanutils-1.9.3.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-codec-1.8.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-collections4-4.3.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-fileupload-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-io-2.2.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="D:/Download/java-jdk/mysql-connector-java.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
