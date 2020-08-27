@@ -32,22 +32,27 @@ public class Class_Exam {
 		try {
 			if (Connector2DB.joinDB())
 				Connector2DB.query(sqlString);
-			Servlet.rs.last();
-			int count = Servlet.rs.getRow();
-			System.out.println(count);
-			Servlet.rs.beforeFirst();
+			out.println("[");
 			while (Servlet.rs.next()) {
 				System.out.println(Servlet.rs.getString("question_items"));
 				Class_Exam exam = new Class_Exam(Servlet.rs.getString("exam_id"), Servlet.rs.getString("question_id"),
 						Servlet.rs.getString("question_items"));
-				out.println(g.toJson(exam));
+				if (Servlet.rs.isLast())// 最后一个不需要逗号
+					out.println(g.toJson(exam));
+				else
+					out.println(g.toJson(exam) + ",");
 				System.out.println(g.toJson(exam));
 			}
+			out.println("]");
 		} catch (Exception e) {
 			System.out.println("getExam() Error!" + e.getMessage());
 		}
 		// 关闭数据库
 		Connector2DB.close();
+	}
+
+	public static void saveAnswer(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
+
 	}
 
 }
