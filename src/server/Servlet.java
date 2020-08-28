@@ -48,25 +48,34 @@ public class Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
-		MyHttpServletRequest Req = new MyHttpServletRequest(request);// 解码中文字符
-		String tmp = Req.getParameter("type");
+		synchronized (this) {
 
-		System.out.println("post：" + tmp);
+			MyHttpServletRequest Req = new MyHttpServletRequest(request);// 解码中文字符
+			String tmp = Req.getParameter("type");
 
-		response.setContentType("text/html;charset=UTF-8");
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
-		response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-		PrintWriter out = response.getWriter();
+			System.out.println("post：" + tmp);
 
-		switch (tmp) {
-		case "getExam": {
-			Class_Exam.getExam(Req, response, out);
-			break;
+			response.setContentType("text/html;charset=UTF-8");
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+			response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+			PrintWriter out = response.getWriter();
+
+			switch (tmp) {
+			case "getExam":
+				Class_Question.getQuestion(Req, response, out);// 发送试卷试卷
+				break;
+			case "saveAnswer":
+				Class_Question.saveAnswer(Req, response, out);// 存储考生答案数据
+				break;
+			case "getExamHistory":
+				Class_Exam.getExamHistory(Req, response, out);// 获取考试记录
+				break;
+			case "getCourseHistory":
+				Class_Course.getCourseHistory(Req, response, out);// 获取课程记录
+				break;
+			}
+			out.close();
 		}
-		}
-		out.close();
 	}
-
 }
