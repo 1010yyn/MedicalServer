@@ -62,6 +62,12 @@ public class Servlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 
 			switch (tmp) {
+			case "login":
+				Class_user.login(Req, response, out);// 登录
+				break;
+			case "getInfo":
+				Class_user.getInfo(Req, response, out);//获取用户信息
+				break;
 			case "getExam":
 				Class_Question.getQuestion(Req, response, out);// 发送试卷试卷
 				break;
