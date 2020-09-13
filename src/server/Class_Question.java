@@ -24,9 +24,9 @@ public class Class_Question {
 
 	public static void getQuestion(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
 		String tmp = Req.getParameter("exam_id");
-		System.out.println("exam_id：" + tmp);// 获取考试编号
+		System.out.println("exam_id:" + tmp);// 鑾峰彇鑰冭瘯缂栧彿
 
-		// 连接数据库
+		// 杩炴帴鏁版嵁搴�
 		String sqlString = "select * from exam_question where exam_id = \"" + tmp + "\"";
 		System.out.println(sqlString);
 		try {
@@ -37,7 +37,7 @@ public class Class_Question {
 				System.out.println(Servlet.rs.getString("question_items"));
 				Class_Question question = new Class_Question(Servlet.rs.getString("exam_id"),
 						Servlet.rs.getString("question_id"), Servlet.rs.getString("question_items"));
-				if (Servlet.rs.isLast())// 最后一个不需要逗号
+				if (Servlet.rs.isLast())// 鏈�鍚庝竴涓笉闇�瑕侀�楀彿
 					out.println(g.toJson(question));
 				else
 					out.println(g.toJson(question) + ",");
@@ -52,9 +52,9 @@ public class Class_Question {
 
 	public static void saveAnswer(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
 		String tmp = Req.getParameter("answerList");
-		System.out.println("answerList：" + tmp);// 获取考试编号
+		System.out.println("answerList锛�" + tmp);// 鑾峰彇鑰冭瘯缂栧彿
 		out.println(g.toJson(tmp));
-		// TODO 存储blob数据 需要存储文件
+		// TODO 瀛樺偍blob鏁版嵁 闇�瑕佸瓨鍌ㄦ枃浠�
 	}
 
 }

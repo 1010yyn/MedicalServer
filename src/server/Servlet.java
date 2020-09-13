@@ -26,11 +26,11 @@ public class Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		MyHttpServletRequest Req = new MyHttpServletRequest(request);// 解码中文字符
+		MyHttpServletRequest Req = new MyHttpServletRequest(request);// 瑙ｇ爜涓枃瀛楃
 		String tmp = Req.getParameter("params");
 		System.out.println("get:" + tmp);
 
-		// 设置返回格式
+		// 璁剧疆杩斿洖鏍煎紡
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
@@ -50,7 +50,7 @@ public class Servlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		synchronized (this) {
 
-			MyHttpServletRequest Req = new MyHttpServletRequest(request);// 解码中文字符
+			MyHttpServletRequest Req = new MyHttpServletRequest(request);// 瑙ｇ爜涓枃瀛楃
 			String tmp = Req.getParameter("type");
 
 			System.out.println("post：" + tmp);
@@ -66,20 +66,44 @@ public class Servlet extends HttpServlet {
 				Class_user.login(Req, response, out);// 登录
 				break;
 			case "getInfo":
-				Class_user.getInfo(Req, response, out);//获取用户信息
+				Class_user.getInfo(Req, response, out);// 获取个人信息
+				break;
+			case "updateInfo":
+				Class_user.updateInfo(Req, response, out);// 管理员修改个人信息
+				break;
+			case "deleteUser":
+				Class_user.deleteUser(Req, response, out);// 删除用户
+				break;
+			case "getExamInfo":
+				Class_Exam.getExamInfo(Req, response, out);// 获取考试信息
+				break;
+			case "updateExamInfo":
+				Class_Exam.updateExamInfo(Req, response, out);// 更新考试信息
 				break;
 			case "getExam":
-				Class_Question.getQuestion(Req, response, out);// 发送试卷试卷
+				Class_Question.getQuestion(Req, response, out);// 获取考试列表
 				break;
 			case "saveAnswer":
-				Class_Question.saveAnswer(Req, response, out);// 存储考生答案数据
+				Class_Question.saveAnswer(Req, response, out);// 保存答案
 				break;
 			case "getExamHistory":
 				Class_Exam.getExamHistory(Req, response, out);// 获取考试记录
 				break;
 			case "getCourseHistory":
-				Class_Course.getCourseHistory(Req, response, out);// 获取课程记录
+				Class_Course.getCourseHistory(Req, response, out);// 获取课程学习记录
 				break;
+			case "getMessageList":
+				break;
+			case "getMessage":
+				Class_Message.getMessage(Req, response, out);// 获取单条message
+				break;
+			case "modifyMessage":
+				Class_Message.modifyMessage(Req, response, out);// 修改message
+				break;
+			case "deleteMessage":
+				Class_Message.deleteMessage(Req, response, out);// 刪除message
+				break;
+
 			}
 			out.close();
 		}

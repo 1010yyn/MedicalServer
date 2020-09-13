@@ -32,8 +32,8 @@ public class Class_Course {
 
 	public static void getCourseHistory(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
 		String tmp = Req.getParameter("user_id");
-		System.out.println("user_id：" + tmp);// 获取用户编号
-		// 连接数据库
+		System.out.println("user_id:" + tmp);// 鑾峰彇鐢ㄦ埛缂栧彿
+		// 杩炴帴鏁版嵁搴�
 		String sqlString = "SELECT course_info.*,course_history.time_stamp FROM (course_info join course_history on course_info.course_id=course_history.course_id) where user_id ="
 				+ tmp + " order by time_stamp desc";
 		System.out.println(sqlString);
@@ -46,7 +46,7 @@ public class Class_Course {
 						Servlet.rs.getString("course_title"), Servlet.rs.getString("office"),
 						Servlet.rs.getString("sum"), Servlet.rs.getString("completed"), Servlet.rs.getString("start"),
 						Servlet.rs.getString("end"), Servlet.rs.getString("time_stamp"));
-				if (Servlet.rs.isLast())// 最后一个不需要逗号
+				if (Servlet.rs.isLast())// 鏈�鍚庝竴涓笉闇�瑕侀�楀彿
 					out.println(g.toJson(course));
 				else
 					out.println(g.toJson(course) + ",");
