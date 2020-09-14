@@ -29,6 +29,31 @@ public class Class_Course {
 		this.end = end;
 		this.time_stamp = time_stamp;
 	}
+	
+	public static void getCourseList(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
+		String sqlString = "SELECT * FROM course_info";
+		System.out.println(sqlString);
+		try {
+			if (Connector2DB.joinDB())
+				Connector2DB.query(sqlString);
+			out.println("[");
+			while (Servlet.rs.next()) {
+				Class_Course course = new Class_Course(Servlet.rs.getString("course_id"),
+						Servlet.rs.getString("course_title"), Servlet.rs.getString("office"),
+						Servlet.rs.getString("sum"), Servlet.rs.getString("completed"), Servlet.rs.getString("start"),
+						Servlet.rs.getString("end"),"");
+				if (Servlet.rs.isLast())// 鏈�鍚庝竴涓笉闇�瑕侀�楀彿
+					out.println(g.toJson(course));
+				else
+					out.println(g.toJson(course) + ",");
+				System.out.println(g.toJson(course));
+			}
+			out.println("]");
+		} catch (Exception e) {
+			System.out.println("getExamList() Error!" + e.getMessage());
+		}
+		Connector2DB.close();
+	}
 
 	public static void getCourseHistory(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
 		String tmp = Req.getParameter("user_id");

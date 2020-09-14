@@ -55,6 +55,31 @@ public class Class_user {
 		Connector2DB.close();
 	}
 
+	public static void getUserList(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
+		String sqlString = "SELECT * FROM user_ordinary";
+		System.out.println(sqlString);
+		try {
+			if (Connector2DB.joinDB())
+				Connector2DB.query(sqlString);
+			out.println("[");
+			while (Servlet.rs.next()) {
+				Class_user user = new Class_user(Servlet.rs.getString("user_id"), Servlet.rs.getString("login_id"),
+						Servlet.rs.getString("password"), Servlet.rs.getString("user_name"),
+						Servlet.rs.getString("user_phone"), Servlet.rs.getString("office"), Servlet.rs.getString("sex"),
+						Servlet.rs.getString("post"), Servlet.rs.getString("head"));
+				if (Servlet.rs.isLast())// 最后一个用户信息
+					out.println(g.toJson(user));
+				else
+					out.println(g.toJson(user) + ",");
+				System.out.println(g.toJson(user));
+			}
+			out.println("]");
+		} catch (Exception e) {
+			System.out.println("getUserList() Error!" + e.getMessage());
+		}
+		Connector2DB.close();
+	}
+
 	public static void getInfo(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
 		String user_id = Req.getParameter("user_id");
 		System.out.println("user_id:" + user_id);// 获取UID

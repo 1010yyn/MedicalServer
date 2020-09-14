@@ -26,6 +26,29 @@ public class Class_Exam {
 		this.time_stamp = time_stamp;
 	}
 
+	public static void getExamList(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
+		String sqlString = "SELECT * FROM exam_info";
+		System.out.println(sqlString);
+		try {
+			if (Connector2DB.joinDB())
+				Connector2DB.query(sqlString);
+			out.println("[");
+			while (Servlet.rs.next()) {
+				Class_Exam exam = new Class_Exam(Servlet.rs.getString("exam_id"), Servlet.rs.getString("exam_title"),
+						Servlet.rs.getString("office"), Servlet.rs.getString("start"), Servlet.rs.getString("end"), "");
+				if (Servlet.rs.isLast())// 最后一条记录
+					out.println(g.toJson(exam));
+				else
+					out.println(g.toJson(exam) + ",");
+				System.out.println(g.toJson(exam));
+			}
+			out.println("]");
+		} catch (Exception e) {
+			System.out.println("getExamList() Error!" + e.getMessage());
+		}
+		Connector2DB.close();
+	}
+
 	public static void getExamHistory(MyHttpServletRequest Req, HttpServletResponse response, PrintWriter out) {
 		String tmp = Req.getParameter("user_id");
 		System.out.println("user_id:" + tmp);// 获取用户ID

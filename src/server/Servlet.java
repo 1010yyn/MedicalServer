@@ -65,6 +65,8 @@ public class Servlet extends HttpServlet {
 			case "login":
 				Class_user.login(Req, response, out);// 登录
 				break;
+			case "getUserList":Class_user.getUserList(Req, response, out);//获取用户列表
+				break;
 			case "getInfo":
 				Class_user.getInfo(Req, response, out);// 获取个人信息
 				break;
@@ -86,8 +88,14 @@ public class Servlet extends HttpServlet {
 			case "saveAnswer":
 				Class_Question.saveAnswer(Req, response, out);// 保存答案
 				break;
+			case "getExamList":
+				Class_Exam.getExamList(Req, response, out);// 获取所有的考试信息（管理员
+				break;
 			case "getExamHistory":
 				Class_Exam.getExamHistory(Req, response, out);// 获取考试记录
+				break;
+			case "getCourseList":
+				Class_Course.getCourseList(Req, response, out);// 获取所有的课程信息（管理员
 				break;
 			case "getCourseHistory":
 				Class_Course.getCourseHistory(Req, response, out);// 获取课程学习记录
